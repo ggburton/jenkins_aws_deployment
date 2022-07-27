@@ -11,7 +11,7 @@
       vars:
         package:
         - wget
-        - java-1.8.0-openjdk-devel
+        - java-17-amazon-corretto-devel
         - git
 
     - name: clone prefconfigured Jenkins files
@@ -63,7 +63,7 @@
         enabled: yes 
 
     - name: Wait until Jenkins is fully up
-      shell: result_first=1; while [[ $result_first != 0 ]]; do if [[ `grep 'Jenkins is fully up and running' /var/log/jenkins/jenkins.log`]]; then result_first=0;else sleep 4;fi;done 
+      shell: result_first=1; while [[ $result_first != 0 ]]; do if [[ `grep 'Jenkins is fully up and running' /var/log/jenkins/jenkins.log` ]];then result_first=0;else sleep 4;fi;done
       register: result 
       until: result.rc == 0
       
